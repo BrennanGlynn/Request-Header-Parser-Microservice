@@ -9,11 +9,15 @@ router.get('/', function(req, res, next) {
 
 router.get('/api/whoami', function (req, res) {
 	var clientIp = requestIp.getClientIp(req);
-	var	language;
-	var	software;
+	var	language = req.headers['accept-language'];
+	var	software = req.headers['user-agent'];
+	var start = software.indexOf('(') + 1;
+	var end = software.indexOf(')');
+
 	res.json({
-		'clientIp': clientIp,
-		'headers': req.headers
+		'ipaddress': clientIp,
+		'language': language.slice(0, language.indexOf(',')),
+		'software': software.slice(start, end)
 	});
 });
 
