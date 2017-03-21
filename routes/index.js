@@ -13,7 +13,7 @@ router.get('/api/whoami', function (req, res) {
 	var	software;
 	res.json({
 		'clientIp': clientIp,
-		'regIP': req.connection.remoteAddress
+		'regIP': req.connection
 	});
 });
 
