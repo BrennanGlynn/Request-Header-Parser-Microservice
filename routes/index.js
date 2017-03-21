@@ -11,7 +11,10 @@ router.get('/api/whoami', function (req, res) {
 	var clientIp = requestIp.getClientIp(req);
 	var	language;
 	var	software;
-	res.json({'clientIp': clientIp});
+	res.json({
+		'clientIp': clientIp,
+		'regIP': req.connection.remoteAddress
+	});
 });
 
 module.exports = router;
